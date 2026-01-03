@@ -50,7 +50,8 @@ DOOM/
 │   ├── train_deadly_corridor_harsh.py      # With reward shaping
 │   ├── train_take_cover_fast.py            # Take Cover (fast)
 │   ├── train_take_cover_render.py          # Take Cover (watch mode)
-│   └── evaluate.py                         # Evaluate trained models
+│   ├── evaluate.py                         # Evaluate trained models
+│   └── record_video.py                     # Record agent gameplay as MP4
 │
 ├── checkpoints/           # Model checkpoints (created during training)
 ├── logs/                  # TensorBoard logs (created during training)
@@ -261,6 +262,34 @@ python scripts/evaluate.py checkpoints/take_cover/best_model.zip -n 20 --no-rend
 # Use stochastic actions (more variety)
 python scripts/evaluate.py checkpoints/take_cover/final_take_cover.zip --no-deterministic
 ```
+
+## Recording Videos
+
+Capture your agent's gameplay as MP4 videos:
+
+### Installation
+
+```bash
+pip install imageio imageio-ffmpeg
+```
+
+### Usage
+
+```bash
+# Record Take Cover agent (3 episodes, auto-detects scenario)
+python scripts/record_video.py checkpoints/take_cover/ppo_take_cover_4000000_steps.zip
+
+# Record 5 episodes at 60 FPS
+python scripts/record_video.py checkpoints/take_cover/final_take_cover.zip -n 5 --fps 60
+
+# Custom output path
+python scripts/record_video.py checkpoints/basic/best_model.zip -o my_awesome_agent.mp4
+
+# Specify scenario explicitly
+python scripts/record_video.py checkpoints/defend_the_center/best_model.zip -s defend_the_center
+```
+
+**Output:** Creates MP4 video showing the agent's screen as it plays. Perfect for sharing results!
 
 ## Lessons Learned - Our Training Journey
 
