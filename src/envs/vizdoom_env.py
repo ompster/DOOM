@@ -280,7 +280,11 @@ class DoomEnvWrapper(gym.Env):
         if self.render_mode == "rgb_array":
             state = self.game.get_state()
             if state is not None and state.screen_buffer is not None:
-                return state.screen_buffer
+                frame = state.screen_buffer
+                # Convert grayscale to RGB if needed
+                if len(frame.shape) == 2:
+                    frame = np.stack([frame] * 3, axis=-1)
+                return frame
             return np.zeros((480, 640, 3), dtype=np.uint8)
         # For "human" mode, VizDoom window is already visible
         return None

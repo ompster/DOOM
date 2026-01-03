@@ -98,6 +98,21 @@ def record_video(
             # Capture frame
             frame = env.render()
             if frame is not None:
+                # Ensure frame is RGB (3 channels)
+                if len(frame.shape) == 2:
+                    # Grayscale to RGB
+                    frame = np.stack([frame] * 3, axis=-1)
+                elif frame.shape[2] == 1:
+                    # Single channel to RGB
+                    frame = np.repeat(frame, 3, axis=2)
+                elif frame.shape[2] == 4:
+                    # RGBA to RGB (remove alpha)
+                    frame = frame[:, :, :3]
+
+                # Ensure uint8 format
+                if frame.dtype != np.uint8:
+                    frame = (frame * 255).astype(np.uint8) if frame.max() <= 1.0 else frame.astype(np.uint8)
+
                 episode_frames.append(frame)
 
         episode_rewards.append(episode_reward)
