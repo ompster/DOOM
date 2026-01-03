@@ -43,9 +43,13 @@ wheels/
 *~
 
 # Model checkpoints and logs
-checkpoints/
+checkpoints/**/*.zip
+!checkpoints/**/best_model.zip
+!checkpoints/**/final_*.zip
+checkpoints/**/*.json
+!checkpoints/**/best_model.json
+!checkpoints/**/final_*.json
 logs/
-*.zip
 *.pkl
 
 # OS
