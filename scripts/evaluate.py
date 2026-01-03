@@ -178,12 +178,14 @@ Examples:
     scenario = args.scenario
     if scenario is None:
         # Try to extract scenario from path
-        if "basic" in args.model_path.lower():
-            scenario = "basic"
+        if "take_cover" in args.model_path.lower():
+            scenario = "take_cover"
         elif "defend_the_center" in args.model_path.lower():
             scenario = "defend_the_center"
         elif "deadly_corridor" in args.model_path.lower():
             scenario = "deadly_corridor"
+        elif "basic" in args.model_path.lower():
+            scenario = "basic"
         else:
             scenario = "basic"
             print(f"Warning: Could not infer scenario, using default: {scenario}")
