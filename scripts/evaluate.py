@@ -178,7 +178,9 @@ Examples:
     scenario = args.scenario
     if scenario is None:
         # Try to extract scenario from path
-        if "take_cover" in args.model_path.lower():
+        if "health_gathering" in args.model_path.lower():
+            scenario = "health_gathering"
+        elif "take_cover" in args.model_path.lower():
             scenario = "take_cover"
         elif "defend_the_center" in args.model_path.lower():
             scenario = "defend_the_center"
