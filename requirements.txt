@@ -1,0 +1,22 @@
+# Core RL dependencies
+torch==2.5.0
+gymnasium==0.29.1
+stable-baselines3==2.3.2
+
+# VizDoom
+vizdoom>=1.2.3
+
+# Monitoring and visualization
+tensorboard>=2.15.0
+wandb>=0.16.0
+
+# Utilities
+numpy>=1.24.0,<2.0.0
+opencv-python>=4.9.0
+matplotlib>=3.8.0
+pillow>=10.2.0
+pygame>=2.5.0
+
+# Development tools (optional)
+jupyter>=1.0.0
+ipykernel>=6.29.0
